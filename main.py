@@ -2,6 +2,13 @@ import os
 def main ():
     #await input for the book name to input 
     print("Welcome to Bookbot!\nThe book analysis bot to help you know if the word count is for you ;)\n")
+    selected_book_path = get_book()
+    
+    
+    print_report(selected_book_path)
+    
+
+def get_book():
     selected_book_path = ""
     try:
         book_files = os.listdir("books/")
@@ -24,13 +31,10 @@ def main ():
             else:
                 print(f"\t!!!Book does not exist : {response}")
 
-    except:
-        print("books/ Directory not found")
-    
-    print_report(selected_book_path)
-    
+    except Exception as e:
+        print(f"Error: {e}")
 
-
+    return selected_book_path
 
 
 # Counts the individual words that are separated by any white space or new line, tab etc..

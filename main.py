@@ -29,13 +29,21 @@ def count_chars(file_contents) :
 def print_report(file_path):
     with open(file_path) as f:
         file_contents = f.read()
-        num = count_words(file_contents)
-        print(f"Word Count : {num}")
+        word_num = count_words(file_contents)
         char_counts = count_chars(file_contents)
         #Print char counts iterating through the dictionary
         print(char_counts)
 
         # Print a report
+
+        print(f"--- Begin report of {file_path} ---")
+        print(f"{word_num} words found in the document\n")
+        for key in char_counts.keys():
+            if key.isalpha():
+                print(f"The '{key}' character was found {char_counts[key]} times")
+        print("--- End report ---")
+
+
         
 
     

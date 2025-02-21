@@ -1,7 +1,33 @@
+import os
 def main ():
+    #await input for the book name to input 
+    print("Welcome to Bookbot!\nThe book analysis bot to help you know if the word count is for you ;)\n")
+    selected_book_path = ""
+    try:
+        book_files = os.listdir("books/")
+
+        is_found = False
+        while(not is_found):
+            print("\n---Books Available---")
+            for i in range(0, len(book_files)):
+                print(f"{i}: {book_files[i]}")
+            response = input("Please select a book number or specify a file location\n")
+            if response.isnumeric():
+                try:
+                    selected_book_path = f"books/{book_files[int(response)]}" 
+                    is_found = True
+                except Exception as e:
+                    print(f"Incorrect Input! Must be a number between 0 and {len(book_files)}")
+            elif os.path.exists(response):
+                selected_book_path = response
+                is_found = True
+            else:
+                print(f"\t!!!Book does not exist : {response}")
+
+    except:
+        print("books/ Directory not found")
     
-    path_to_file = "Books/frankenstein.txt"
-    print_report(path_to_file)
+    print_report(selected_book_path)
     
 
 

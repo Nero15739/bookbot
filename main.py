@@ -1,4 +1,5 @@
 def main ():
+    
     path_to_file = "Books/frankenstein.txt"
     print_report(path_to_file)
     
@@ -31,16 +32,16 @@ def print_report(file_path):
         file_contents = f.read()
         word_num = count_words(file_contents)
         char_counts = count_chars(file_contents)
+        #converts to a list of tuples that then are converted back into a dictionary 
+        sorted_dict = dict(sorted(char_counts.items()))
         #Print char counts iterating through the dictionary
-        print(char_counts)
 
         # Print a report
-
         print(f"--- Begin report of {file_path} ---")
         print(f"{word_num} words found in the document\n")
-        for key in char_counts.keys():
+        for key in sorted_dict.keys():
             if key.isalpha():
-                print(f"The '{key}' character was found {char_counts[key]} times")
+                print(f"The '{key}' character was found {sorted_dict[key]} times")
         print("--- End report ---")
 
 

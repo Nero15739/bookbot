@@ -1,34 +1,42 @@
 def main ():
     path_to_file = "Books/frankenstein.txt"
-    with open(path_to_file) as f:
-        file_contents = f.read()
-        num = countWords(file_contents)
-        print(f"Word Count : {num}")
-        charCounts = countChars(file_contents)
-        #Print char counts iterating through the dictionary
-        print(charCounts)
+    print_report(path_to_file)
+    
+
+
 
 
 # Counts the individual words that are separated by any white space or new line, tab etc..
-def countWords(words):
+def count_words(words):
     arr = words.split()
     return len(arr)
 
 #Counts the chars in the alphabet after being lowered. then returns the dictionary
 #ARGS: string file_contents
 #RETURNS: Dictionary char counts
-def countChars(file_contents) :
-    charCounts = {}
+def count_chars(file_contents) :
+    char_counts = {}
     for char in file_contents:
-        lowerChar = char.lower()
-        if lowerChar in charCounts.keys():
-            charCounts[lowerChar] = charCounts[lowerChar] + 1
+        lower_char = char.lower()
+        if lower_char in char_counts.keys():
+            char_counts[lower_char] = char_counts[lower_char] + 1
         else:
-            charCounts[lowerChar] = 1
+            char_counts[lower_char] = 1
             # print(lowerChar)
 
-    return charCounts
-    
+    return char_counts
+
+def print_report(file_path):
+    with open(file_path) as f:
+        file_contents = f.read()
+        num = count_words(file_contents)
+        print(f"Word Count : {num}")
+        char_counts = count_chars(file_contents)
+        #Print char counts iterating through the dictionary
+        print(char_counts)
+
+        # Print a report
+        
 
     
     

@@ -1,9 +1,16 @@
 import os
 def main ():
     #await input for the book name to input 
-    print("Welcome to Bookbot!\nThe book analysis bot to help you know if the word count is for you ;)\n")
+    print("""
+  ____              _    ____        _   
+ |  _ \            | |  |  _ \      | |  
+ | |_) | ___   ___ | | _| |_) | ___ | |_ 
+ |  _ < / _ \ / _ \| |/ /  _ < / _ \| __|
+ | |_) | (_) | (_) |   <| |_) | (_) | |_ 
+ |____/ \___/ \___/|_|\_\____/ \___/ \__|                                      
+""")
+    print("The book analysis bot to help you know if the word count is for you ;)\n")
     selected_book_path = get_book()
-    
     
     print_report(selected_book_path)
     
@@ -67,16 +74,12 @@ def print_report(file_path):
         #Print char counts iterating through the dictionary
 
         # Print a report
-        print(f"--- Begin report of {file_path} ---")
+        print(f"\n--- Begin report of {file_path} ---")
         print(f"{word_num} words found in the document\n")
         for key in sorted_dict.keys():
             if key.isalpha():
                 print(f"The '{key}' character was found {sorted_dict[key]} times")
         print("--- End report ---")
 
-
-        
-
-    
     
 main()

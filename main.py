@@ -8,9 +8,7 @@ def main ():
 
 
 def countWords(words):
-    arr = words.split(' ')
-    # for str in arr:
-    #     print(str)
+    arr = words.split()
     return len(arr)
     
 main()

@@ -26,7 +26,7 @@ Here is an example of how to use BookBot:
     python main.py
     ```
 2. You will see a prompt to select a book; follow said prompts
-![Welcome Screen](image.png)
+![WelcomeImage](image.png)
 
 3. BookBot will generate a report similar to the following:
     ```

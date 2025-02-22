@@ -1,4 +1,7 @@
 import os
+import sys
+from stats import count_chars, count_words
+
 def main ():
     #await input for the book name to input 
     print("""
@@ -10,9 +13,17 @@ def main ():
  |____/ \___/ \___/|_|\_\____/ \___/ \__|                                      
 """)
     print("The book analysis bot to help you know if the word count is for you ;)\n")
-    selected_book_path = get_book()
+    selected_book_path = None
+    if len(sys.argv) > 1:
+        if os.path.exists(sys.argv[1]):
+            selected_book_path = sys.argv[1]
+        else:
+            print(f"!!!Path not found!!!\n{sys.argv[1]}")
+    else:
+        selected_book_path = get_book()
     
-    print_report(selected_book_path)
+    if selected_book_path != None:
+        print_report(selected_book_path)
     
 
 def get_book():
@@ -44,26 +55,6 @@ def get_book():
     return selected_book_path
 
 
-# Counts the individual words that are separated by any white space or new line, tab etc..
-def count_words(words):
-    arr = words.split()
-    return len(arr)
-
-#Counts the chars in the alphabet after being lowered. then returns the dictionary
-#ARGS: string file_contents
-#RETURNS: Dictionary char counts
-def count_chars(file_contents) :
-    char_counts = {}
-    for char in file_contents:
-        lower_char = char.lower()
-        if lower_char in char_counts.keys():
-            char_counts[lower_char] = char_counts[lower_char] + 1
-        else:
-            char_counts[lower_char] = 1
-            # print(lowerChar)
-
-    return char_counts
-
 def print_report(file_path):
     with open(file_path) as f:
         file_contents = f.read()
@@ -78,7 +69,7 @@ def print_report(file_path):
         print(f"{word_num} words found in the document\n")
         for key in sorted_dict.keys():
             if key.isalpha():
-                print(f"The '{key}' character was found {sorted_dict[key]} times")
+                print(f"{key}: {sorted_dict[key]}")
         print("--- End report ---")
 
     
